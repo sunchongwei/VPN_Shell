@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/ -->
+<html lang="zh-CN" style="font-size: 15.2px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Python Hexo Docker Linux">
+    <meta name="description" content="Python Hexo Docker Linux 学习空间">
+    <meta name="author" content="HDUZN">
+    
+    <title>
+        
+            Linux使用v2ray |
+        
+        烟雨平生
+    </title>
+    
+<link rel="stylesheet" href="./Linux使用v2ray _ 烟雨平生_files/style.css">
+
+    <link rel="shortcut icon" href="https://www.hduzn.cn/images/favicon.svg">
+    
+<link rel="stylesheet" href="./Linux使用v2ray _ 烟雨平生_files/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"hduzn.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/favicon.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"不积跬步，无以至千里；不积小流，无以成江海。"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="dark-mode">
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar" style="visibility: hidden; width: 0%;"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container" style="padding-left: 260px;">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top" style="padding-left: 260px;">
+            <header class="header-wrapper">
+
+    <div class="header-content" style="max-width: 920px;">
+        <div class="left">
+            
+            <a class="logo-title" href="https://www.hduzn.cn/">
+                烟雨平生
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="https://www.hduzn.cn/">
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="https://www.hduzn.cn/archives">
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="https://www.hduzn.cn/categories">
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="https://www.hduzn.cn/tags">
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="https://www.hduzn.cn/links">
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="" href="https://www.hduzn.cn/about">
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="https://www.hduzn.cn/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="https://www.hduzn.cn/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="https://www.hduzn.cn/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="https://www.hduzn.cn/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="https://www.hduzn.cn/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="https://www.hduzn.cn/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content" style="max-width: 920px;">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Linux使用v2ray</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="./Linux使用v2ray _ 烟雨平生_files/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">HDUZN</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-14 21:10:35</span>
+        <span class="mobile">2022-06-14 21:10</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="https://www.hduzn.cn/categories/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="https://www.hduzn.cn/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>因为在CentOS的服务器上装东西的，用到了github，直接访问不了。本地windows系统用的v2rayN的客户端，想到v2ray在Linux上也可以用，就装上试一下。</p>
+<p>v2ray本身是不区分服务端和客户端的，只要配置好相关文件，反正都可正常使用。（就是配置文件的区别）</p>
+<a id="more"></a>
+
+<h3 id="1-下载-v2ray-linux-64-zip"><a href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#1-%E4%B8%8B%E8%BD%BD-v2ray-linux-64-zip" class="headerlink" title="1.下载 v2ray-linux-64.zip"></a>1.下载 v2ray-linux-64.zip</h3><p>v2ray的Github地址：<br><a class="link" target="_blank" rel="noopener" href="https://github.com/v2ray/v2ray-core/releases/">https://github.com/v2ray/v2ray-core/releases/<i class="fas fa-external-link-alt"></i></a></p>
+<p>目前最新的版本是v4.31.0，下面有Download页面：<br><a class="link" target="_blank" rel="noopener" href="https://github.com/v2fly/v2ray-core/releases/tag/v4.31.0">https://github.com/v2fly/v2ray-core/releases/tag/v4.31.0<i class="fas fa-external-link-alt"></i></a></p>
+<p>在页面中找到 v2ray-linux-64.zip 文件下载（我的是64位的CentOS系统）。</p>
+<p>下载后解压出来是一个 v2ray-linux-64 目录，用ftp工具上传到linux的服务器上。</p>
+<p>当然，也可以直接把解压包上传后，再用unzip命令解压。</p>
+<h3 id="2-把文件复制到对应的目录中"><a href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#2-%E6%8A%8A%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E7%9B%AE%E5%BD%95%E4%B8%AD" class="headerlink" title="2.把文件复制到对应的目录中"></a>2.把文件复制到对应的目录中</h3><p>用复制(cp命令)或移动(mv命令)都可以。这里用cp举例。</p>
+<p>首先，进入 v2ray-linux-64 目录，可以用 <code>ls -l</code>查看目录下的文件。<br>目录中的几个文件需要修改下权限，需要添加下可执行的权限。</p>
+<div class="highlight-container"><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> v2ray-linux-64</span><br><span class="line"></span><br><span class="line">chmod 755 v2ray</span><br><span class="line">chmod 755 v2ctl</span><br><span class="line">chmod 755 systemd/system/v2ray.service</span><br><span class="line">chmod 755 systemd/system/v2ray@.service</span><br></pre></td></tr></tbody></table></figure><div class="copy-btn"><i class="fas fa-copy"></i></div></div>
+<p>然后复制目录中的文件到指定位置：</p>
+<div class="highlight-container"><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cp v2ray /usr/<span class="built_in">local</span>/bin/</span><br><span class="line">cp v2ctl /usr/<span class="built_in">local</span>/bin/</span><br><span class="line"></span><br><span class="line">cp systemd/system/v2ray.service /etc/systemd/system/</span><br><span class="line">cp systemd/system/v2ray@.service /etc/systemd/system/</span><br><span class="line"></span><br><span class="line">mkdir /usr/<span class="built_in">local</span>/share/v2ray/</span><br><span class="line">cp geoip.dat /usr/<span class="built_in">local</span>/share/v2ray/</span><br><span class="line">cp geosite.dat /usr/<span class="built_in">local</span>/share/v2ray/</span><br><span class="line"></span><br><span class="line">mkdir /var/<span class="built_in">log</span>/v2ray/</span><br><span class="line">cp access.log /var/<span class="built_in">log</span>/v2ray/</span><br><span class="line">cp error.log /var/<span class="built_in">log</span>/v2ray/</span><br></pre></td></tr></tbody></table></figure><div class="copy-btn"><i class="fas fa-copy"></i></div></div>
+<p>两个日志文件没有的话，自己新建一个就行，要保证所有人都有读写权限。<br>反正配置文件中不用的话，其实也无所谓，就先建着扔着。</p>
+<p>还有一个config.json配置文件，等配置完了再复制。</p>
+<h3 id="3-config-json配置文件"><a href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#3-config-json%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="headerlink" title="3.config.json配置文件"></a>3.config.json配置文件</h3><p>原生的V2ray并不支持订阅，反正我本来就在windows下用的，直接在v2rayN的客户端，服务器列表中中右键-&gt;【导出所选服务器为客户端配置】，保存成config.json文件。</p>
+<p>然后把这个config.json文件也上传到 v2ray-linux-64 目录中，再来复制。</p>
+<div class="highlight-container"><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/<span class="built_in">local</span>/etc/v2ray/</span><br><span class="line">cp config.json /usr/<span class="built_in">local</span>/etc/v2ray/config.json</span><br></pre></td></tr></tbody></table></figure><div class="copy-btn"><i class="fas fa-copy"></i></div></div>
+<p>以下配置文件仅为参考（需将outbounds处settings中改成自己的）：</p>
+<div class="highlight-container"><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="attr">"log"</span>: {</span><br><span class="line">    <span class="attr">"access"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"error"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"loglevel"</span>: <span class="string">"warning"</span></span><br><span class="line">  },</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    {</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">1080</span>,</span><br><span class="line">      <span class="attr">"listen"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="attr">"sniffing"</span>: {</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"destOverride"</span>: [</span><br><span class="line">          <span class="string">"http"</span>,</span><br><span class="line">          <span class="string">"tls"</span></span><br><span class="line">        ]</span><br><span class="line">      },</span><br><span class="line">      <span class="attr">"settings"</span>: {</span><br><span class="line">        <span class="attr">"auth"</span>: <span class="string">"noauth"</span>,</span><br><span class="line">        <span class="attr">"udp"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"allowTransparent"</span>: <span class="literal">false</span></span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    {</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"http"</span>,</span><br><span class="line">      <span class="attr">"port"</span>: <span class="number">1081</span>,</span><br><span class="line">      <span class="attr">"listen"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"http"</span>,</span><br><span class="line">      <span class="attr">"sniffing"</span>: {</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"destOverride"</span>: [</span><br><span class="line">          <span class="string">"http"</span>,</span><br><span class="line">          <span class="string">"tls"</span></span><br><span class="line">        ]</span><br><span class="line">      },</span><br><span class="line">      <span class="attr">"settings"</span>: {</span><br><span class="line">        <span class="attr">"udp"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"allowTransparent"</span>: <span class="literal">false</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    {</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"proxy"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: {</span><br><span class="line">        <span class="attr">"vnext"</span>: [</span><br><span class="line">          {</span><br><span class="line">            <span class="attr">"address"</span>: <span class="string">"abc.abc.net"</span>,</span><br><span class="line">            <span class="attr">"port"</span>: <span class="number">30000</span>,</span><br><span class="line">            <span class="attr">"users"</span>: [</span><br><span class="line">              {</span><br><span class="line">                <span class="attr">"id"</span>: <span class="string">"effffff6-fffffb-4aaa-8888-aaaaaaaaaa"</span>,</span><br><span class="line">                <span class="attr">"alterId"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">"email"</span>: <span class="string">"t@t.tt"</span>,</span><br><span class="line">                <span class="attr">"security"</span>: <span class="string">"chacha20-poly1305"</span></span><br><span class="line">              }</span><br><span class="line">            ]</span><br><span class="line">          }</span><br><span class="line">        ]</span><br><span class="line">      },</span><br><span class="line">      <span class="attr">"streamSettings"</span>: {</span><br><span class="line">        <span class="attr">"network"</span>: <span class="string">"tcp"</span></span><br><span class="line">      },</span><br><span class="line">      <span class="attr">"mux"</span>: {</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"concurrency"</span>: <span class="number">8</span></span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    {</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"direct"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: {}</span><br><span class="line">    },</span><br><span class="line">    {</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"block"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"blackhole"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: {</span><br><span class="line">        <span class="attr">"response"</span>: {</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"http"</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"routing"</span>: {</span><br><span class="line">    <span class="attr">"domainStrategy"</span>: <span class="string">"AsIs"</span>,</span><br><span class="line">    <span class="attr">"domainMatcher"</span>: <span class="string">"linear"</span>,</span><br><span class="line">    <span class="attr">"rules"</span>: [</span><br><span class="line">      {</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">        <span class="attr">"inboundTag"</span>: [</span><br><span class="line">          <span class="string">"api"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"outboundTag"</span>: <span class="string">"api"</span>,</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span></span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">        <span class="attr">"outboundTag"</span>: <span class="string">"proxy"</span>,</span><br><span class="line">        <span class="attr">"domain"</span>: [</span><br><span class="line">          <span class="string">"geosite:google"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span></span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">        <span class="attr">"outboundTag"</span>: <span class="string">"direct"</span>,</span><br><span class="line">        <span class="attr">"domain"</span>: [</span><br><span class="line">          <span class="string">"domain:example-example.com"</span>,</span><br><span class="line">          <span class="string">"domain:example-example2.com"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span></span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">        <span class="attr">"outboundTag"</span>: <span class="string">"block"</span>,</span><br><span class="line">        <span class="attr">"domain"</span>: [</span><br><span class="line">          <span class="string">"geosite:category-ads-all"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"enabled"</span>: <span class="literal">true</span></span><br><span class="line">      }</span><br><span class="line">    ]</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><div class="copy-btn"><i class="fas fa-copy"></i></div></div>
+<p>我这里就没把log文件配置写进去，需要的话再写上：</p>
+<div class="highlight-container"><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"log": {</span><br><span class="line">    "access": "/var/log/v2ray/access.log",</span><br><span class="line">    "error": "/var/log/v2ray/error.log",</span><br><span class="line">    "loglevel": "warning"</span><br><span class="line">  },</span><br><span class="line">...</span><br></pre></td></tr></tbody></table></figure><div class="copy-btn"><i class="fas fa-copy"></i></div></div>
+<p>记得这两个文件看一下，要有读写权限。</p>
+<h3 id="4-启动v2ray"><a href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#4-%E5%90%AF%E5%8A%A8v2ray" class="headerlink" title="4.启动v2ray"></a>4.启动v2ray</h3><div class="highlight-container"><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动V2ray</span></span><br><span class="line">sudo systemctl start v2ray</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查V2ray状态</span></span><br><span class="line">sudo systemctl status v2ray</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置V2ray开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> v2ray</span><br></pre></td></tr></tbody></table></figure><div class="copy-btn"><i class="fas fa-copy"></i></div></div>
+<p>V2ray状态：<br><img src="./Linux使用v2ray _ 烟雨平生_files/Linux_v2ray_1.png" data-src="/img/Linux_v2ray_1.png" style="zoom: 100%;"></p>
+<h3 id="5-检验代码是否生效"><a href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#5-%E6%A3%80%E9%AA%8C%E4%BB%A3%E7%A0%81%E6%98%AF%E5%90%A6%E7%94%9F%E6%95%88" class="headerlink" title="5.检验代码是否生效"></a>5.检验代码是否生效</h3><div class="highlight-container"><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -x socks5://127.0.0.1:1080 https://www.google.com -v</span><br></pre></td></tr></tbody></table></figure><div class="copy-btn"><i class="fas fa-copy"></i></div></div>
+<p>如果能返回google.com的源代码，即表示配置成功。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Linux使用v2ray</li>
+        <li>本文作者：HDUZN</li>
+        <li>创建时间：2022-06-14 21:10:35</li>
+        <li>
+            本文链接：http://hduzn.cn/2022/06/14/Linux使用v2ray/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="https://www.hduzn.cn/tags/Linux/">#Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev" rel="prev" href="https://www.hduzn.cn/2022/06/18/Docker%E6%90%AD%E5%BB%BAfrp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Docker搭建frp内网穿透服务器</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next" rel="next" href="https://www.hduzn.cn/2022/06/14/CentOS%E5%AE%89%E8%A3%85git/">
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CentOS安装git</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script src="./Linux使用v2ray _ 烟雨平生_files/Valine.min.js.下载"></script>
+        <div id="vcomments"></div>
+        <script>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'UVs2AheLuqJbRc85LQv7vzMz-gzGzoHsz',
+                    appKey: 'y98dsYB3ugs25U2vgNWTb3m7',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '请在此输入您的留言',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'HDUZN';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            ©
+            
+              <span>2021</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="https://www.hduzn.cn/">HDUZN</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io/">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+            <div class="icp-info info-item"><a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn/">浙ICP备2022013719号-1</a></div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle" style="display: flex;">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-sun"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent">1</span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside" style="left: 0px;">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3 active"><a class="nav-link active active-current" href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#1-%E4%B8%8B%E8%BD%BD-v2ray-linux-64-zip"><span class="nav-text">1.下载 v2ray-linux-64.zip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#2-%E6%8A%8A%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E7%9B%AE%E5%BD%95%E4%B8%AD"><span class="nav-text">2.把文件复制到对应的目录中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#3-config-json%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3.config.json配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#4-%E5%90%AF%E5%8A%A8v2ray"><span class="nav-text">4.启动v2ray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/#5-%E6%A3%80%E9%AA%8C%E4%BB%A3%E7%A0%81%E6%98%AF%E5%90%A6%E7%94%9F%E6%95%88"><span class="nav-text">5.检验代码是否生效</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="https://www.hduzn.cn/2022/06/14/Linux%E4%BD%BF%E7%94%A8v2ray/">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="./Linux使用v2ray _ 烟雨平生_files/utils.js.下载"></script>
+
+<script src="./Linux使用v2ray _ 烟雨平生_files/main.js.下载"></script>
+
+<script src="./Linux使用v2ray _ 烟雨平生_files/header-shrink.js.下载"></script>
+
+<script src="./Linux使用v2ray _ 烟雨平生_files/back2top.js.下载"></script>
+
+<script src="./Linux使用v2ray _ 烟雨平生_files/dark-light-toggle.js.下载"></script>
+
+
+
+    
+<script src="./Linux使用v2ray _ 烟雨平生_files/local-search.js.下载"></script>
+
+
+
+
+    
+<script src="./Linux使用v2ray _ 烟雨平生_files/code-copy.js.下载"></script>
+
+
+
+
+    
+<script src="./Linux使用v2ray _ 烟雨平生_files/lazyload.js.下载"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="./Linux使用v2ray _ 烟雨平生_files/left-side-toggle.js.下载"></script>
+
+<script src="./Linux使用v2ray _ 烟雨平生_files/anime.min.js.下载"></script>
+
+<script src="./Linux使用v2ray _ 烟雨平生_files/toc.js.下载"></script>
+
+    
+</div>
+
+
+
+
+
+</body></html>
